@@ -4,6 +4,8 @@
 
     <uses-permission
         android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -20,6 +22,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".WebActivity"></activity>
+        
+        <service android:name=".autosync.NewsJob">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

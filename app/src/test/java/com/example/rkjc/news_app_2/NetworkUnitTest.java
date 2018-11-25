@@ -1,6 +1,8 @@
 package com.example.rkjc.news_app_2;
 
 
+import com.example.rkjc.news_app_2.utils.NetworkUtils;
+
 import org.junit.Test;
 
 import java.net.URL;

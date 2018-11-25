@@ -2,14 +2,10 @@ package com.example.rkjc.news_app_2.database;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
-import android.arch.persistence.db.SupportSQLiteDatabase;
-import android.arch.persistence.room.RoomDatabase;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
-import android.util.Log;
 
-import com.example.rkjc.news_app_2.JsonUtils;
-import com.example.rkjc.news_app_2.NetworkUtils;
+import com.example.rkjc.news_app_2.utils.JsonUtils;
+import com.example.rkjc.news_app_2.utils.NetworkUtils;
 import com.example.rkjc.news_app_2.NewsItem;
 
 import java.net.URL;
@@ -37,7 +33,6 @@ public class NewsRepository {
     public void populateDb() {
         new PopulateDbAsyncTask(newsItemDao).execute();
     }
-
 
     public LiveData<List<NewsItem>> getAllNews() {
         return allNews;
@@ -88,7 +83,6 @@ public class NewsRepository {
             try {
                 String jsonNewsResponse = NetworkUtils
                         .getResponseFromHttpUrl(newsRequestUrl);
-                Log.e("Json Response", jsonNewsResponse);
 
                 newsItemDao.clearAll();
                 newsItems = JsonUtils.parseNews(jsonNewsResponse);

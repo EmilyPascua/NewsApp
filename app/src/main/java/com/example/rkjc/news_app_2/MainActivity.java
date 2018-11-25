@@ -2,7 +2,6 @@ package com.example.rkjc.news_app_2;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -12,8 +11,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MenuInflater;
-import android.widget.Toast;
 
+import com.example.rkjc.news_app_2.autosync.ScheduleUtils;
 import com.example.rkjc.news_app_2.database.NewsItemViewModel;
 
 import java.util.ArrayList;
@@ -39,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         final NewsRecyclerViewAdapter adapter = new NewsRecyclerViewAdapter(this, newsItems);
         recyclerView.setAdapter(adapter);
 
+        ScheduleUtils.scheduleRefresh(this);
+
         newsItemViewModel = ViewModelProviders.of(this).get(NewsItemViewModel.class);
         //Observer
         newsItemViewModel.getAllWords().observe(this, new Observer<List<NewsItem>>() {
@@ -61,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_search) {
-            Toast.makeText(MainActivity.this, "Search Works", Toast.LENGTH_SHORT).show();
             newsItemViewModel.populateDb();
             return true;
         }

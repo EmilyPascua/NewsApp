@@ -9,7 +9,10 @@ import android.view.View;
 import android.net.Uri;
 
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,19 +57,24 @@ public class NewsRecyclerViewAdapter extends RecyclerView.Adapter<NewsRecyclerVi
         TextView title;
         TextView description;
         TextView date;
+        ImageView newsImage;
+
 
         public NewsViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.title);
             description = (TextView) itemView.findViewById(R.id.description);
             date = (TextView) itemView.findViewById(R.id.date);
+            newsImage = (ImageView) itemView.findViewById(R.id.article_image);
+
 
         }
 
         void bind(final int listIndex) {
-            title.setText("Title: " + mNews.get(listIndex).getTitle());
-            description.setText("Description: " + mNews.get(listIndex).getDescription());
-            date.setText("Date: " + mNews.get(listIndex).getPublishedAt());
+            Picasso.with(mContext).load(mNews.get(listIndex).getUrlToImage()).into(newsImage);
+            title.setText(mNews.get(listIndex).getTitle());
+            description.setText(mNews.get(listIndex).getDescription());
+            date.setText(mNews.get(listIndex).getPublishedAt());
             itemView.setOnClickListener(this);
         }
 

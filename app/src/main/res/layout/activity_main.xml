@@ -17,16 +17,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.16"
         android:layout_margin="25px"/>
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/news_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="true"
         android:scrollbars="vertical"
-        tools:layout_editor_absoluteX="122dp"
-        tools:layout_editor_absoluteY="61dp"
-        android:layout_margin="25px"
-        />
-
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </android.support.constraint.ConstraintLayout>
